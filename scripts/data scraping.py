@@ -10,9 +10,9 @@ pages = 80
 
 headers = {
     'Content-Type':
-    'application/json',
+        'application/json',
     'User-Agent':
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0'
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0'
 }
 
 # query message
@@ -27,9 +27,11 @@ requestMap = {
     "extensions": {
         "persistedQuery": {
             "version":
-            1,
+                1,
             "sha256Hash":
-            "1933b5d41962b5418be51a2982d9bc3331636457ce3c36b7a30fd3db3a1bb207"  # changes every a few days
+                "59978706853ca33a61836b839cd15ef4a1132f0111aa7b7c15831ca46bcaff51"  # changes every a few days
+                                                                                    # public api used so the key is left here
+                                                                                    # how to get it: browser's inspector element, network, locate graphql, under request payload
         }
     }
 }
@@ -38,7 +40,7 @@ query = {
     "page": 1,
     "pageSize": 25,
     "filters": {
-        "surroundingSuburbs": False,  #surrounding included or not
+        "surroundingSuburbs": False,  # surrounding included or not
         "excludeNoSalePrice": False,
         "ex-under-contract": False,
         "ex-deposit-taken": False,
@@ -53,13 +55,13 @@ query = {
 }
 
 url = 'https://lexa.realestate.com.au/graphql'  # api
-"""
-  start scraping
-  :number number of pages required
-"""
 
 
 def reptile(number, postcode):
+    """
+    start scraping
+    :number -- number of pages required
+    """
     query['page'] = number
     query['localities'][0]['searchLocation'] = str(postcode)
     query_json = json.dumps(query)
@@ -72,26 +74,24 @@ def reptile(number, postcode):
     time.sleep(random.randint(3, 5))  # stops after each page to prevent access getting denied
 
 
-"""
-  response message
-"""
-
-
 def format_json(result):
+    """
+    response message
+    """
     dataOut = {
-        "id": [],
-        "address": [],
-        "suburb": [],
-        "postcode": [],
-        "price": [],
-        "propertyType": [],
-        "bedrooms": [],
-        "bathrooms": [],
-        "parkingSpaces": [],
-        "studies": [],
-        "furnished": [],
-        "latitude": [],
-        "longitude": []
+        "id": {},
+        "address": {},
+        "suburb": {},
+        "postcode": {},
+        "price": {},
+        "propertyType": {},
+        "bedrooms": {},
+        "bathrooms": {},
+        "parkingSpaces": {},
+        "studies": {},
+        "furnished": {},
+        "latitude": {},
+        "longitude": {}
     }
     global pages
     try:
@@ -105,6 +105,7 @@ def format_json(result):
     # code for surrounding suburbs
     # if len(items) == 0:
     # items = result['data']['rentSearch']['results']['surrounding']['items']
+    count = 0
     for item in items:
         listing = item['listing']
         address = listing['address']['display']['shortAddress']  # address
@@ -122,19 +123,20 @@ def format_json(result):
         time.sleep(0.5)  # stops after every property to prevent access getting denied
         furnished = getFurnished(id)  # furnished
         time.sleep(0.5)  # stops after every property to prevent access getting denied
-        dataOut["id"].append(id)
-        dataOut["address"].append(address)
-        dataOut["suburb"].append(suburb)
-        dataOut["postcode"].append(postcode)
-        dataOut["price"].append(price)
-        dataOut["propertyType"].append(propertyType)
-        dataOut["bedrooms"].append(bedrooms)
-        dataOut["bathrooms"].append(bathrooms)
-        dataOut["parkingSpaces"].append(parkingSpaces)
-        dataOut["studies"].append(studies)
-        dataOut["furnished"].append(furnished)
-        dataOut["latitude"].append(xy[0])
-        dataOut["longitude"].append(xy[1])
+        dataOut["id"][str(count)] = id
+        dataOut["address"][str(count)] = address
+        dataOut["suburb"][str(count)] = suburb
+        dataOut["postcode"][str(count)] = postcode
+        dataOut["price"][str(count)] = price
+        dataOut["propertyType"][str(count)] = propertyType
+        dataOut["bedrooms"][str(count)] = bedrooms
+        dataOut["bathrooms"][str(count)] = bathrooms
+        dataOut["parkingSpaces"][str(count)] = parkingSpaces
+        dataOut["studies"][str(count)] = studies
+        dataOut["furnished"][str(count)] = furnished
+        dataOut["latitude"][str(count)] = xy[0]
+        dataOut["longitude"][str(count)] = xy[1]
+        count += 1
 
     return dataOut
 
@@ -142,20 +144,20 @@ def format_json(result):
 # address
 reqM = {
     "query":
-    "query getMapUrl($width: Int!, $height: Int!, $highDPI: Boolean!, $id: ListingId!) {\n  details: detailsV2(id: $id) {\n    listing {\n      ... on BuyResidentialListing {\n        __typename\n        parent {\n          staticMap(width: $width, height: $height, highDPI: $highDPI) {\n            url\n          }\n        }\n      }\n      ... on ResidentialListing {\n        id\n        staticMap(width: $width, height: $height, highDPI: $highDPI) {\n          url\n        }\n      }\n      ... on ProjectProfile {\n        id\n        staticMap(width: $width, height: $height, highDPI: $highDPI) {\n          url\n        }\n      }\n    }\n  }\n}\n",
+        "query getMapUrl($width: Int!, $height: Int!, $highDPI: Boolean!, $id: ListingId!) {\n  details: detailsV2(id: $id) {\n    listing {\n      ... on BuyResidentialListing {\n        __typename\n        parent {\n          staticMap(width: $width, height: $height, highDPI: $highDPI) {\n            url\n          }\n        }\n      }\n      ... on ResidentialListing {\n        id\n        staticMap(width: $width, height: $height, highDPI: $highDPI) {\n          url\n        }\n      }\n      ... on ProjectProfile {\n        id\n        staticMap(width: $width, height: $height, highDPI: $highDPI) {\n          url\n        }\n      }\n    }\n  }\n}\n",
     "variables": {
         "width": 640,
         "height": 230,
         "highDPI": False
     }
 }
-"""
- getting coordinates
- :id  property id
-"""
 
 
 def getLocation(id):
+    """
+    gets coordinates
+    :id -- property id
+    """
     reqM['variables']['id'] = str(id)
     print("obtain coordinates")
     try:
@@ -168,13 +170,9 @@ def getLocation(id):
     except Exception as e:
         print('failed to get coordinates')
         print(e)
-        return ["None", "None"] 
+        return ["None", "None"]
 
 
-"""
-  check if furnished
-  :id property id
-"""
 reqFurn = {
     "operationName": "getListingById",
     "variables": {
@@ -185,15 +183,21 @@ reqFurn = {
     "extensions": {
         "persistedQuery": {
             "version":
-            1,
+                1,
             "sha256Hash":
-            "89fdf921d7c2800d52dc074a0e1de2e160be08eecd2c4bdbe0a25dbbe340b66d"  # changes every a few days
+                "59978706853ca33a61836b839cd15ef4a1132f0111aa7b7c15831ca46bcaff51"  # changes every a few days
+                                                                                    # public api used so the key is left here
+                                                                                    # how to get it: browser's inspector element, network, locate graphql, under request payload
         }
     }
 }
 
 
 def getFurnished(id):
+    """
+    check if furnished
+    :id -- property id
+    """
     reqFurn['variables']['id'] = str(id)
     print("checking if furnished")
     furnished = 'N'
@@ -212,12 +216,10 @@ def getFurnished(id):
     return furnished
 
 
-"""
-  write in csv
-"""
-
-
 def write_csv(dataOut):
+    """
+    write in csv
+    """
     with open('realestate.csv', mode='a', encoding='utf-8', newline='') as fd:
         csv_writer = csv.DictWriter(fd,
                                     fieldnames=[
@@ -230,7 +232,7 @@ def write_csv(dataOut):
         if os.stat('realestate.csv').st_size == 0:
             csv_writer.writeheader()
         for i in range(len(dataOut[list(dataOut.keys())[0]])):  # writes csv from dictionary line by line
-            dic1 = {key: dataOut[key][i] for key in dataOut.keys()}
+            dic1 = {key: dataOut[key][str(i)] for key in dataOut.keys()}
             csv_writer.writerow(dic1)
         print("written csv successfully")
 

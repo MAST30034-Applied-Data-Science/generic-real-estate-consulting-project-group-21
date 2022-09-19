@@ -73,8 +73,6 @@ def main():
     # save
     df.to_csv(file_path, index=False)
     # key，more keys can be added
-    keys = read_keys()
-    print(keys)
     print(df.iloc[0])
     for index in df.index:
         for i in range(3):
@@ -94,7 +92,6 @@ def main():
                 else:
                     print('None ', i, index, len(df.index))
                 # to satisfy the 40/min limit
-                time.sleep(1.5)
 
 
 if __name__ == "__main__":

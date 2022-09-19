@@ -27,7 +27,7 @@ def read_keys(p='../data/raw/key.txt'):
     return None
 
 
-def post_get(start_longitude, start_latitude, end_longitude, end_latitude, key):
+def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     """
     request data
     :param start_longitude: starting point
@@ -41,9 +41,11 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude, key):
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
     }
     # combine URL
-    url = 'https://api.openrouteservice.org/v2/directions/driving-car?api_key={}&start={},{}&end={},{}'.format(
-        key, start_longitude, start_latitude, end_longitude, end_latitude)
+    url = 'http://34.143.200.33:8080/ors/v2/directions/driving-car?start={},{}&end={},{}'.format(
+            start_latitude, start_longitude, end_latitude, end_longitude)
+    print(url)
     call = requests.get(url, headers=headers)
+    print(call)
     # show responses
     if call.status_code == 200:
         data = call.json()
@@ -56,7 +58,7 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude, key):
     
 def main():
     # file directory
-    file_path = ''../data/curated/realestate_school_coord.csv'
+    file_path = '../data/curated/realestate_school_coord.csv'
     # load to dataframe
     df = read_csv_file(file_path)
     # print(df)
@@ -73,13 +75,13 @@ def main():
     # key，more keys can be added
     keys = read_keys()
     print(keys)
-
+    print(df.iloc[0])
     for index in df.index:
         for i in range(3):
             if pd.isna(df.iloc[index, 15 + i * 4]):
                 # request with key0
-                distance, duration = post_get(df.iloc[index, 12], df.iloc[index, 11], df.iloc[index, 14 + i * 4],
-                                              df.iloc[index, 13 + i * 4], keys[0])
+                distance, duration = post_get(df.iloc[index, 12], df.iloc[index, 13], df.iloc[index, 14 + i * 4],
+                                              df.iloc[index, 13 + i * 4])
                 if not distance is None and not duration is None:
                     print("success", i, index, len(df.index))
                     # unit conversion

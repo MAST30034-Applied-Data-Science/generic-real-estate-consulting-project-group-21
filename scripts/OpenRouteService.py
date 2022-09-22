@@ -42,6 +42,11 @@ def generate_request_url(start_longitude, start_latitude, end_longitude, end_lat
    #     print(call.status_code, call.reason)
    #     return None, None
 
+failed_requests = ()
+
+def exception_handler(request, exception):
+    global failed_requests
+    failed_requests += (request,)
 
 def main():
     # file directory
@@ -80,18 +85,36 @@ def main():
             if pd.isna(df.loc[index, columns[i]]):
                 # request for empty values
                 urls.append(generate_request_url(df.loc[index, "longitude"], df.loc[index, "latitude"],
-                                              df.loc[index, position[i + 1]], df.loc[index, position[i]]))    
-    
-    print(f'making {len(urls)} parallel GET requests...')
-    requests = (grequests.get(u) for u in urls)
-    
-    i = 0
+                                              df.loc[index, position[i + 1]], df.loc[index, position[i]]))
+    #library doesn't like 60,000 requests at a time, batch them into groups ourselves
+    responses = []
+    global failed_requests
     percent_complete = 0
-    for response in grequests.imap(requests, size=1000):
+    i = 0
+    BATCH_SIZE = 500
+    print(f'batching {len(urls)} GET requests into groups of size {BATCH_SIZE}...\n')
+    while (i+1)*BATCH_SIZE < len(urls):
+        requests = (grequests.get(u) for u in urls[i*BATCH_SIZE:(i+1)*BATCH_SIZE])
+        resp_batch = grequests.map(requests,exception_handler=exception_handler)
+        j = 0
+        while len(failed_requests)>0 and j < 10:
+            j+=1
+            failed_requests = ()    
+            resp_batch = grequests.map(requests,exception_handler=exception_handler)
+        if len(failed_requests)>0:
+            print("Requests failed, try again?")
+        responses.append(resp_batch)
         i += 1
-        if i/len(urls)*100 >= percent_complete:
-            print(f'{percent_complete}% of GET requests complete...')
-            percent_complete += 10
+        if (i+1)*BATCH_SIZE/len(urls)*100 >= percent_complete:
+            print(f'\r {(i+1)*BATCH_SIZE} ({percent_complete:.1f}%) of GET requests complete...', end='', flush=True)
+            percent_complete += BATCH_SIZE/len(urls)*100
+    
+    requests = (grequests.get(u) for u in urls[i*BATCH_SIZE:])
+    responses.append(grequests.map(requests))
+    
+    print('\r 100% of GET requests complete...', end='', flush=True)
+    
+
 
         #print(response)
         #add duration/distance to url

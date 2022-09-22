@@ -5,7 +5,7 @@ import pandas as pd
 import requests
 
 
-def read_csv_file(p='../data/curated/realestate_school_coord.csv'):
+def read_csv_file(p='../data/curated/realestate_with_coordinates.csv'):
     """
     reads csv
     :param p: directory
@@ -15,18 +15,6 @@ def read_csv_file(p='../data/curated/realestate_school_coord.csv'):
     return df
 
 
-def read_keys(p='../data/raw/key.txt'):
-    """
-    reads API key
-    :param p: directory
-    :return:
-    """
-    with open(p, 'r', encoding='utf-8') as fp:
-        lines = fp.readlines()
-        return lines
-    return None
-
-
 def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     """
     request data
@@ -34,7 +22,6 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     :param start_latitude: starting point
     :param end_longitude: end point
     :param end_latitude: end point
-    :param key: API key
     :return: distance， duration
     """
     headers = {
@@ -42,7 +29,7 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     }
     # combine URL
     url = 'http://34.143.200.33:8080/ors/v2/directions/driving-car?start={},{}&end={},{}'.format(
-            start_latitude, start_longitude, end_latitude, end_longitude)
+        start_longitude, start_latitude, end_longitude, end_latitude)
     print(url)
     call = requests.get(url, headers=headers)
     print(call)
@@ -55,43 +42,56 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
         print(call.status_code, call.reason)
         return None, None
 
-    
+
 def main():
     # file directory
-    file_path = '../data/curated/realestate_school_coord.csv'
+    file_path = '../data/curated/realestate_with_coordinates.csv'
     # load to dataframe
     df = read_csv_file(file_path)
-    # print(df)
+
     # columns to be added
-    columns = ['min_pri_distance', 'min_pri_duration', 'min_sec_distance', 'min_sec_duration', 'min_other_distance',
-               'min_other_duration']
+    columns = ['closest_primary_distance', 'closest_primary_duration',
+               'closest_secondary_distance', 'closest_secondary_duration',
+               'closest_train_distance', 'closest_train_duration',
+               'closest_tram_distance', 'closest_tram_duration',
+               'closest_bus_distance', 'closest_bus_duration',
+               'closest_park_distance', 'closest_park_duration']
+    position = ["closest_primary_lat", "closest_primary_long",
+                "closest_secondary_lat", "closest_secondary_long",
+                "closest_train_lat", "closest_train_long",
+                "closest_tram_lat", "closest_tram_long",
+                "closest_bus_lat", "closest_bus_long",
+                "closest_park_lat", "closest_park_long"]
     # add if doesn't exist
-    for i in range(len(columns)):
-        column = columns[i]
-        if not column in df.columns:
-            df.insert(loc=15 + i + i // 2 * 2, column=column, value=None)
+    for i in range(0, len(position), 2):
+        column1 = columns[i]
+        column2 = columns[i + 1]
+        loc = list(df.columns).index(position[i+1])
+        if column1 not in df.columns:
+            df.insert(loc=loc + 1, column=column1, value=None)
+        if column2 not in df.columns:
+            df.insert(loc=loc + 2, column=column2, value=None)
     # save
     df.to_csv(file_path, index=False)
-    # key，more keys can be added
-    print(df.iloc[0])
+
     for index in df.index:
-        for i in range(3):
-            if pd.isna(df.iloc[index, 15 + i * 4]):
-                # request with key0
-                distance, duration = post_get(df.iloc[index, 12], df.iloc[index, 13], df.iloc[index, 14 + i * 4],
-                                              df.iloc[index, 13 + i * 4])
+        for i in range(0, len(columns), 2):
+            # check if empty
+            if pd.isna(df.loc[index, columns[i]]):
+                # request for empty values
+                distance, duration = post_get(df.loc[index, "longitude"], df.loc[index, "latitude"],
+                                              df.loc[index, position[i + 1]], df.loc[index, position[i]])
                 if not distance is None and not duration is None:
-                    print("success", i, index, len(df.index))
+                    print("success", i//2, index, len(df.index))
                     # unit conversion
                     # distance = distance/1000
                     # duration = duration/60
-                    df.iloc[index, 15 + i * 4] = distance
-                    df.iloc[index, 16 + i * 4] = duration
+                    df.loc[index, columns[i]] = distance
+                    df.loc[index, columns[i+1]] = duration
                     # save as requests go through, will start from where it stops if exit in the middle
                     df.to_csv(file_path, index=False)
                 else:
-                    print('None ', i, index, len(df.index))
-                # to satisfy the 40/min limit
+                    print('None ', i//2, index, len(df.index))
 
 
 if __name__ == "__main__":

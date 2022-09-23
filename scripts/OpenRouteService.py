@@ -91,28 +91,34 @@ def main():
     global failed_requests
     percent_complete = 0
     i = 0
-    BATCH_SIZE = 500
+    BATCH_SIZE = 9323
     print(f'batching {len(urls)} GET requests into groups of size {BATCH_SIZE}...\n')
     while (i+1)*BATCH_SIZE < len(urls):
         requests = (grequests.get(u) for u in urls[i*BATCH_SIZE:(i+1)*BATCH_SIZE])
         resp_batch = grequests.map(requests,exception_handler=exception_handler)
-        j = 0
-        while len(failed_requests)>0 and j < 10:
-            j+=1
+        retries = 0
+        while len(failed_requests)>0 and retries < 10:
+            retries += 1
             failed_requests = ()    
             resp_batch = grequests.map(requests,exception_handler=exception_handler)
         if len(failed_requests)>0:
             print("Requests failed, try again?")
         responses.append(resp_batch)
-        i += 1
         if (i+1)*BATCH_SIZE/len(urls)*100 >= percent_complete:
+            percent_complete = (i+1)*BATCH_SIZE/len(urls)*100
             print(f'\r {(i+1)*BATCH_SIZE} ({percent_complete:.1f}%) of GET requests complete...', end='', flush=True)
-            percent_complete += BATCH_SIZE/len(urls)*100
+        i += 1
+    resp_batch = (grequests.get(u) for u in urls[i*BATCH_SIZE:])
+    retries = 0
+    while len(failed_requests)>0 and retries < 10:
+        retries += 1
+        failed_requests = ()    
+        resp_batch = grequests.map(requests,exception_handler=exception_handler)
+    if len(failed_requests)>0:
+        print("Requests failed, try again?")
+    responses.append(resp_batch)
     
-    requests = (grequests.get(u) for u in urls[i*BATCH_SIZE:])
-    responses.append(grequests.map(requests))
-    
-    print('\r 100% of GET requests complete...', end='', flush=True)
+    print('\r 100% of GET requests complete... \n', end='', flush=True)
     
 
 

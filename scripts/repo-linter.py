@@ -63,7 +63,7 @@ for file in ipynbs + pys:
         print(f'reEST docstrings PASSED\u2713 for {file}')
     else:
         print(f'reEST docstrings FAILED\u274C for {file}')
-        print(f'functions missing reEST docstrings:')
+        print(f'functions missing reST docstrings:')
         for f in funcs:
             print(f' - {f}')
 

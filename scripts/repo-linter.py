@@ -7,7 +7,12 @@ import pycodestyle
 
 
 def ipynb_to_py(file):
-    """returns a python script from an ipython notebook string"""
+    """
+    Convert an interactive python notebook to a python script
+
+    :param file: the location of an ipython notebook
+    :returns: python script as a string
+    """
     ipynb = open(file)
     data = json.load(ipynb)
 
@@ -18,18 +23,26 @@ def ipynb_to_py(file):
     return pyscript
 
 
-def get_funcs_wout_docstrings(python_script):
-    """returns function names which dont have a docstring"""
+def get_funcs_wout_reST_docstrings(python_script):
+    """
+    Get the functions without a reST docstring
+
+    :param python_script: a string containing a python script
+    :returns: list of function names which dont have a docstring
+    """
     functions = []
     docstring_required = False
-    for line in pyscript.split('\n'):
-        if docstring_required:
-            if not re.match(r'.*""".*"""', line):
-                functions.append(function)
-            docstring_required = False
-        if re.match('^def .*:', line):
-            function = line.split('def')[-1].strip()
-            docstring_required = True
+    for func in pyscript.split('def ')[1:-1]:
+        signature = func.split(':')[0]
+
+        params = [param.strip('"): ') for param in
+                  signature.split('(')[-1].split(',')]
+
+        # make regex like :param number:\n.*:param postcode:\n.*:returns:
+        pattern = r' .*\n.*'.join([f':param {p}:' for p in params])\
+            + r' .*\n.*:returns: .*'
+        if not re.findall(pattern, func):
+            functions.append(signature)
     return functions
 
 
@@ -45,20 +58,20 @@ for file in ipynbs + pys:
     else:
         pyscript = open(file).read()
 
-    funcs = get_funcs_wout_docstrings(pyscript)
+    funcs = get_funcs_wout_reST_docstrings(pyscript)
     if len(funcs) == 0:
-        print(f'docstrings PASSED\u2713 for {file}')
+        print(f'reEST docstrings PASSED\u2713 for {file}')
     else:
-        print(f'docstrings FAILED\u274C for {file}')
-        print(f'functions missing docstrings:')
+        print(f'reEST docstrings FAILED\u274C for {file}')
+        print(f'functions missing reEST docstrings:')
         for f in funcs:
             print(f' - {f}')
 
     f = tmp_file if file in ipynbs else file
     if os.system(f'pycodestyle {f}') != 0:
-        print(f'PEP8       FAILED\u274C for {file}')
+        print(f'PEP8  guidelines FAILED\u274C for {file}')
     else:
-        print(f'PEP8       PASSED\u2713 ffor {file}')
+        print(f'PEP8  guidelines PASSED\u2713 ffor {file}')
 
     if file in ipynbs:
         os.remove(tmp_file)

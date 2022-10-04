@@ -35,6 +35,7 @@ def get_funcs_wout_reST_docstrings(python_script):
     for func in pyscript.split('def ')[1:-1]:
         signature = func.split(':')[0]
 
+        # todo: fix default arguments
         params = [param.strip('"): ') for param in
                   signature.split('(')[-1].split(',')]
 

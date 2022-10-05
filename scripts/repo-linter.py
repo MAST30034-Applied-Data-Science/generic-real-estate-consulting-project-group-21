@@ -70,9 +70,9 @@ for file in ipynbs + pys:
 
     f = tmp_file if file in ipynbs else file
     if os.system(f'pycodestyle {f}') != 0:
-        print(f'PEP8  guidelines FAILED\u274C for {file}')
+        print(f'PEP8 guidelines FAILED\u274C for {file}')
     else:
-        print(f'PEP8  guidelines PASSED\u2713 for {file}')
+        print(f'PEP8 guidelines PASSED\u2713 for {file}')
 
     if file in ipynbs:
         os.remove(tmp_file)

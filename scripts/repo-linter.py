@@ -57,6 +57,8 @@ for file in ipynbs + pys:
     if file in ipynbs:
         pyscript = ipynb_to_py(file)
         tmp_file = ''.join(file.split('.')[:-1]) + '-tmp.py'
+        if os.path.exists(tmp_file):
+            os.remove(tmp_file)
         tmp_file_ptr = open(tmp_file, "a")
         tmp_file_ptr.write(pyscript)
         tmp_file_ptr.flush()

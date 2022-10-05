@@ -20,7 +20,9 @@ def ipynb_to_py(file):
     for cell in data['cells']:
         if cell['cell_type'] == 'code':
             pyscript += ''.join(cell['source']) + '\n\n'
-
+    
+    # remove last new line
+    pyscript = pyscript[:-1]
     return pyscript
 
 

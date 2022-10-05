@@ -75,7 +75,7 @@ for file in ipynbs + pys:
             print(f' - {f}')
 
     f = tmp_file if file in ipynbs else file
-    if os.system(f'pycodestyle {f}') != 0:
+    if os.system(f'pycodestyle {f} -qq --statistics') != 0:
         print(f'PEP8 guidelines FAILED\u274C for {file}')
     else:
         print(f'PEP8 guidelines PASSED\u2713 for {file}')

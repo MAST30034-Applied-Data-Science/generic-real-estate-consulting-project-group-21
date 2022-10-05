@@ -59,8 +59,9 @@ url = 'https://lexa.realestate.com.au/graphql'  # api
 
 def reptile(number, postcode):
     """
-    start scraping
-    :number -- number of pages required
+    scrape data
+    :param number: number of pages required
+    :return: scraping result
     """
     query['page'] = number
     query['localities'][0]['searchLocation'] = str(postcode)
@@ -76,7 +77,9 @@ def reptile(number, postcode):
 
 def format_json(result):
     """
-    response message
+    formats response 
+    :param result: result from scraping
+    :return: data after formatting
     """
     dataOut = {
         "id": {},
@@ -156,7 +159,8 @@ reqM = {
 def getLocation(id):
     """
     gets coordinates
-    :id -- property id
+    :param id: property id
+    :return: coordinates
     """
     reqM['variables']['id'] = str(id)
     print("obtain coordinates")
@@ -195,8 +199,9 @@ reqFurn = {
 
 def getFurnished(id):
     """
-    check if furnished
-    :id -- property id
+    checks if furnished
+    :param id: property id
+    :return: furnishing status
     """
     reqFurn['variables']['id'] = str(id)
     print("checking if furnished")
@@ -218,7 +223,9 @@ def getFurnished(id):
 
 def write_csv(dataOut):
     """
-    write in csv
+    writes csv
+    :param dataOut: formatted data from scraping
+    :return:
     """
     with open('realestate.csv', mode='a', encoding='utf-8', newline='') as fd:
         csv_writer = csv.DictWriter(fd,

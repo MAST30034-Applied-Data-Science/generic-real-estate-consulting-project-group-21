@@ -20,7 +20,8 @@ def ipynb_to_py(file):
     for cell in data['cells']:
         if cell['cell_type'] == 'code':
             pyscript += ''.join(cell['source']) + '\n\n'
-    
+    #ignore lines with #noqa 
+    pyscript = '\n'.join([l for l in pyscript.split('\n') if '#noqa' not in l])
     # remove last new line
     pyscript = pyscript[:-1]
     return pyscript

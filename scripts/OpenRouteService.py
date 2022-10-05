@@ -74,7 +74,7 @@ def main():
     for i in range(0, len(position), 2):
         column1 = columns[i]
         column2 = columns[i + 1]
-        loc = list(df.columns).index(position[i+1])
+        loc = list(df.columns).index(position[i + 1])
         if column1 not in df.columns:
             df.insert(loc=loc + 1, column=column1, value=None)
         if column2 not in df.columns:
@@ -91,15 +91,15 @@ def main():
                 # send request and get data
                 distance, duration = post_get(df.loc[index, "longitude"], df.loc[index, "latitude"],
                                               df.loc[index, position[i + 1]], df.loc[index, position[i]])
-                if not distance is None and not duration is None:
-                    print("success", i//2, index, len(df.index))
+                if distance is not None and duration is not None:
+                    print("success", i // 2, index, len(df.index))
                     # unit conversion
                     # distance = distance/1000
                     # duration = duration/60
                     df.loc[index, columns[i]] = distance
-                    df.loc[index, columns[i+1]] = duration
+                    df.loc[index, columns[i + 1]] = duration
                 else:
-                    print('None ', i//2, index, len(df.index), "Try requesting again after a second")
+                    print('None ', i // 2, index, len(df.index), "Try requesting again after a second")
 
         if write_time + datetime.timedelta(seconds=90) < datetime.datetime.now():
             # write csv every 90 seconds
@@ -107,7 +107,6 @@ def main():
             write_time = datetime.datetime.now()
         else:
             df.to_csv(file_path, index=False)
-
 
 
 if __name__ == "__main__":

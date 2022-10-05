@@ -28,18 +28,18 @@ def get_funcs_wout_reST_docstrings(python_script):
     Get the functions without a reST docstring
 
     :param python_script: a string containing a python script
-    :returns: list of function names which dont have a docstring
+    :returns: list of function signatures which dont have a docstring
     """
     functions = []
-    docstring_required = False
     for func in pyscript.split('def ')[1:-1]:
         signature = func.split(':')[0]
 
-        # todo: fix default arguments
         params = [param.strip('"): ') for param in
                   signature.split('(')[-1].split(',')]
-
-        # make regex like :param number:\n.*:param postcode:\n.*:returns:
+        # handle default arguments
+        params = map(lambda p: p if len(p.split('=')) == 1 else p.split('=')[0],
+                    params)
+        # make regex like :param number:\n.*:param postcode:\n.*:returns: .*
         pattern = r' .*\n.*'.join([f':param {p}:' for p in params])\
             + r' .*\n.*:returns: .*'
         if not re.findall(pattern, func):
@@ -61,9 +61,9 @@ for file in ipynbs + pys:
 
     funcs = get_funcs_wout_reST_docstrings(pyscript)
     if len(funcs) == 0:
-        print(f'reEST docstrings PASSED\u2713 for {file}')
+        print(f'reST docstrings PASSED\u2713 for {file}')
     else:
-        print(f'reEST docstrings FAILED\u274C for {file}')
+        print(f'reST docstrings FAILED\u274C for {file}')
         print(f'functions missing reST docstrings:')
         for f in funcs:
             print(f' - {f}')
@@ -72,7 +72,7 @@ for file in ipynbs + pys:
     if os.system(f'pycodestyle {f}') != 0:
         print(f'PEP8  guidelines FAILED\u274C for {file}')
     else:
-        print(f'PEP8  guidelines PASSED\u2713 ffor {file}')
+        print(f'PEP8  guidelines PASSED\u2713 for {file}')
 
     if file in ipynbs:
         os.remove(tmp_file)

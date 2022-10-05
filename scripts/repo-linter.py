@@ -18,7 +18,8 @@ def ipynb_to_py(file):
 
     pyscript = ''
     for cell in data['cells']:
-        pyscript += ''.join(cell['source']) + '\n\n'
+        if cell['cell_type'] == 'code':
+            pyscript += ''.join(cell['source']) + '\n\n'
 
     return pyscript
 
@@ -56,6 +57,7 @@ for file in ipynbs + pys:
         tmp_file = ''.join(file.split('.')[:-1]) + '-tmp.py'
         tmp_file_ptr = open(tmp_file, "a")
         tmp_file_ptr.write(pyscript)
+        tmp_file_ptr.flush()
     else:
         pyscript = open(file).read()
 

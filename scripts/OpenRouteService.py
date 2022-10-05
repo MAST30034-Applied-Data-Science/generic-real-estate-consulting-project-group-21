@@ -9,7 +9,7 @@ def read_csv_file(p='../data/curated/realestate_coor.csv'):
     """
     reads csv
     :param p: directory
-    :return:
+    :returns: dataframe
     """
     df = pd.read_csv(p)
     return df
@@ -17,12 +17,12 @@ def read_csv_file(p='../data/curated/realestate_coor.csv'):
 
 def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     """
-    request data
+    requests data
     :param start_longitude: starting point
     :param start_latitude: starting point
     :param end_longitude: end point
     :param end_latitude: end point
-    :return: distance， duration
+    :returns: distance， duration
     """
     headers = {
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
@@ -49,6 +49,9 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
 
 
 def main():
+    """
+    :returns: 0
+    """
     # file directory
     file_path = '../data/curated/realestate_coor.csv'
     # load to dataframe
@@ -71,7 +74,7 @@ def main():
     for i in range(0, len(position), 2):
         column1 = columns[i]
         column2 = columns[i + 1]
-        loc = list(df.columns).index(position[i+1])
+        loc = list(df.columns).index(position[i + 1])
         if column1 not in df.columns:
             df.insert(loc=loc + 1, column=column1, value=None)
         if column2 not in df.columns:
@@ -88,15 +91,15 @@ def main():
                 # send request and get data
                 distance, duration = post_get(df.loc[index, "longitude"], df.loc[index, "latitude"],
                                               df.loc[index, position[i + 1]], df.loc[index, position[i]])
-                if not distance is None and not duration is None:
-                    print("success", i//2, index, len(df.index))
+                if distance is not None and duration is not None:
+                    print("success", i // 2, index, len(df.index))
                     # unit conversion
                     # distance = distance/1000
                     # duration = duration/60
                     df.loc[index, columns[i]] = distance
-                    df.loc[index, columns[i+1]] = duration
+                    df.loc[index, columns[i + 1]] = duration
                 else:
-                    print('None ', i//2, index, len(df.index), "Try requesting again after a second")
+                    print('None ', i // 2, index, len(df.index), "Try requesting again after a second")
 
         if write_time + datetime.timedelta(seconds=90) < datetime.datetime.now():
             # write csv every 90 seconds
@@ -104,7 +107,6 @@ def main():
             write_time = datetime.datetime.now()
         else:
             df.to_csv(file_path, index=False)
-
 
 
 if __name__ == "__main__":

@@ -61,6 +61,7 @@ def reptile(number, postcode):
     """
     scrapes data
     :param number: number of pages required
+    :param postcode: postcode used to search
     :returns: scraping result
     """
     query['page'] = number
@@ -77,7 +78,7 @@ def reptile(number, postcode):
 
 def format_json(result):
     """
-    formats response 
+    formats response
     :param result: result from scraping
     :returns: data after formatting
     """

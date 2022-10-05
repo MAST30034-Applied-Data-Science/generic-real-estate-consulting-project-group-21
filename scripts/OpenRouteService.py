@@ -9,7 +9,7 @@ def read_csv_file(p='../data/curated/realestate_coor.csv'):
     """
     reads csv
     :param p: directory
-    :return:
+    :returns: dataframe
     """
     df = pd.read_csv(p)
     return df
@@ -17,12 +17,12 @@ def read_csv_file(p='../data/curated/realestate_coor.csv'):
 
 def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
     """
-    request data
+    requests data
     :param start_longitude: starting point
     :param start_latitude: starting point
     :param end_longitude: end point
     :param end_latitude: end point
-    :return: distance， duration
+    :returns: distance， duration
     """
     headers = {
         'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
@@ -49,6 +49,9 @@ def post_get(start_longitude, start_latitude, end_longitude, end_latitude):
 
 
 def main():
+    """
+    :returns: 0
+    """
     # file directory
     file_path = '../data/curated/realestate_coor.csv'
     # load to dataframe

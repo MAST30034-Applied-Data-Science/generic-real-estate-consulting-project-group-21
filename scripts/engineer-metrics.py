@@ -12,20 +12,23 @@ df = df.join(df2, lsuffix='id', rsuffix='id')
 
 df = df[['suburb', 'postcode', 'price', 'propertyType',
         'bedrooms', 'bathrooms', 'parkingSpaces', 'studies', 'furnished',
-         'closest_primary_duration', 'closest_secondary_duration',
-         'closest_train_duration', 'closest_tram_duration',
-         'closest_bus_duration', 'closest_park_duration', 'min_pri_icsea',
+         'closest_primary_distance', 'closest_secondary_distance',
+         'closest_train_distance', 'closest_tram_distance',
+         'closest_bus_distance', 'closest_park_distance', 'min_pri_icsea',
          'min_sec_icsea']]
 
 
 # Livability
 
-df['park_walkability'] = df['closest_park_duration']\
-       .apply(lambda dur: 'High' if dur < 2*60 else 'Medium'
-              if dur < 5*60 else 'Low')
-df['is_primary_school_walkable'] = df['closest_primary_duration']\
-       .apply(lambda dur: dur < 2*60)
-df['is_secondary_school_walkable'] = df['closest_secondary_duration']\
-       .apply(lambda dur: dur < 3*60)
+df['park_walkability'] = df['closest_park_distance']\
+       .apply(lambda dis: r'$<$1.5 km' if dis < 1500 else '1.5-5km'
+              if dis < 5000 else r'$>$5 km')
+df['is_primary_school_walkable'] = df['closest_primary_distance']\
+       .apply(lambda dis: 'Yes' if dis < 1500 else 'No')
+df['is_secondary_school_walkable'] = df['closest_secondary_distance']\
+       .apply(lambda dis: 'Yes' if dis < 1500 else 'No') 
+
+df['is_tram_stop_walkable'] = df['closest_tram_distance']\
+       .apply(lambda dis: 'Yes' if dis < 1500 else 'No')
 
 df.to_csv('data/curated/engineered-data.csv', index=False)

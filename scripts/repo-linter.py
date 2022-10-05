@@ -20,7 +20,9 @@ def ipynb_to_py(file):
     for cell in data['cells']:
         if cell['cell_type'] == 'code':
             pyscript += ''.join(cell['source']) + '\n\n'
-    
+    # ignore lines with #noqa
+    pyscript = '\n'.join([ln for ln in pyscript.split('\n')
+                         if '#noqa' not in ln])
     # remove last new line
     pyscript = pyscript[:-1]
     return pyscript
@@ -75,10 +77,10 @@ for file in ipynbs + pys:
             print(f' - {f}')
 
     f = tmp_file if file in ipynbs else file
-    if os.system(f'pycodestyle {f} -qq --statistics') != 0:
+    if os.system(f'pycodestyle {f} --ignore=E501 --show-source') != 0:
         print(f'PEP8 guidelines FAILED\u274C for {file}')
     else:
         print(f'PEP8 guidelines PASSED\u2713 for {file}')
 
     if file in ipynbs:
-        os.remove(tmp_file)
+         os.remove(tmp_file)

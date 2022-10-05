@@ -26,7 +26,7 @@ df['park_walkability'] = df['closest_park_distance']\
 df['is_primary_school_walkable'] = df['closest_primary_distance']\
        .apply(lambda dis: 'Yes' if dis < 1500 else 'No')
 df['is_secondary_school_walkable'] = df['closest_secondary_distance']\
-       .apply(lambda dis: 'Yes' if dis < 1500 else 'No') 
+       .apply(lambda dis: 'Yes' if dis < 1500 else 'No')
 
 df['is_tram_stop_walkable'] = df['closest_tram_distance']\
        .apply(lambda dis: 'Yes' if dis < 1500 else 'No')

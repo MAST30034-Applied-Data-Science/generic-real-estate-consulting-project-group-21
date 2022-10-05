@@ -37,8 +37,8 @@ def get_funcs_wout_reST_docstrings(python_script):
         params = [param.strip('"): ') for param in
                   signature.split('(')[-1].split(',')]
         # handle default arguments
-        params = map(lambda p: p if len(p.split('=')) == 1 else p.split('=')[0],
-                    params)
+        params = map(lambda p: p if len(p.split('=')) == 1
+                     else p.split('=')[0], params)
         # make regex like :param number:\n.*:param postcode:\n.*:returns: .*
         pattern = r' .*\n.*'.join([f':param {p}:' for p in params])\
             + r' .*\n.*:returns: .*'

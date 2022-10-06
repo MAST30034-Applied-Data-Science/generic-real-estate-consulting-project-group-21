@@ -29,6 +29,6 @@ df['is_secondary_school_walkable'] = df['closest_secondary_distance'].apply(lamb
 df['is_tram_stop_walkable'] = df['closest_tram_distance'].apply(lambda dis: r'$<$1.5 km' if dis < 1500 else '1.5-5km' if dis < 5000 else r'$>$5 km')
 df['is_train_station_walkable'] = df['closest_train_distance'].apply(lambda dis: r'$<$1.5 km' if dis < 1500 else '1.5-5km' if dis < 5000 else r'$>$5 km')
 
-df['city'] = df['cbd_distance'].apply(lambda dis: dis<3000)
+df['city'] = df['cbd_distance'].apply(lambda dis: dis < 3000)
 
 df.to_csv('data/curated/engineered-data.csv', index=False)

@@ -1,0 +1,518 @@
+notebooks/popu_incomepredict-tmp.py:121:21: E126 continuation line over-indented for hanging indent
+                    / 4 / row['2018-19']
+                    ^
+notebooks/popu_incomepredict-tmp.py:125:21: E126 continuation line over-indented for hanging indent
+                    / 2 / row['2018-19']
+                    ^
+notebooks/popu_incomepredict-tmp.py:173:31: W503 line break before binary operator
+                              * 1.125), 0)
+                              ^
+notebooks/popu_incomepredict-tmp.py:183:31: W503 line break before binary operator
+                              * 1.125 * 1.125), 0)
+                              ^
+notebooks/popu_incomepredict-tmp.py:193:31: W503 line break before binary operator
+                              * 1.125 * 1.125 * 1.125), 0)
+                              ^
+notebooks/Crime_Rate-tmp.py:4:123: E251 unexpected spaces around keyword / parameter equals
+df_crime = pd.read_excel('../data/raw/Data_Tables_LGA_Recorded_Offences_Year_Ending_June_2022.xlsx', 'Table 03', index_col = None)
+                                                                                                                          ^
+notebooks/Crime_Rate-tmp.py:4:125: E251 unexpected spaces around keyword / parameter equals
+df_crime = pd.read_excel('../data/raw/Data_Tables_LGA_Recorded_Offences_Year_Ending_June_2022.xlsx', 'Table 03', index_col = None)
+                                                                                                                            ^
+notebooks/Crime_Rate-tmp.py:12:21: E231 missing whitespace after ','
+col = ['Year ending','Local Government Area','Suburb/Town Name','Offence Division','Offence Subdivision','Offence Subgroup']
+                    ^
+notebooks/Crime_Rate-tmp.py:12:45: E231 missing whitespace after ','
+col = ['Year ending','Local Government Area','Suburb/Town Name','Offence Division','Offence Subdivision','Offence Subgroup']
+                                            ^
+notebooks/Crime_Rate-tmp.py:12:64: E231 missing whitespace after ','
+col = ['Year ending','Local Government Area','Suburb/Town Name','Offence Division','Offence Subdivision','Offence Subgroup']
+                                                               ^
+notebooks/Crime_Rate-tmp.py:12:83: E231 missing whitespace after ','
+col = ['Year ending','Local Government Area','Suburb/Town Name','Offence Division','Offence Subdivision','Offence Subgroup']
+                                                                                  ^
+notebooks/Crime_Rate-tmp.py:12:105: E231 missing whitespace after ','
+col = ['Year ending','Local Government Area','Suburb/Town Name','Offence Division','Offence Subdivision','Offence Subgroup']
+                                                                                                        ^
+notebooks/Crime_Rate-tmp.py:13:31: E251 unexpected spaces around keyword / parameter equals
+df_new = df_crime.drop(columns = col, axis = 1)
+                              ^
+notebooks/Crime_Rate-tmp.py:13:33: E251 unexpected spaces around keyword / parameter equals
+df_new = df_crime.drop(columns = col, axis = 1)
+                                ^
+notebooks/Crime_Rate-tmp.py:13:43: E251 unexpected spaces around keyword / parameter equals
+df_new = df_crime.drop(columns = col, axis = 1)
+                                          ^
+notebooks/Crime_Rate-tmp.py:13:45: E251 unexpected spaces around keyword / parameter equals
+df_new = df_crime.drop(columns = col, axis = 1)
+                                            ^
+notebooks/Crime_Rate-tmp.py:33:42: E251 unexpected spaces around keyword / parameter equals
+df_crime_rate = pd.DataFrame(lst, columns =['Postcode', 'Crime Rate'])
+                                         ^
+notebooks/Crime_Rate-tmp.py:35:1: E402 module level import not at top of file
+from numpy import log
+^
+notebooks/Crime_Rate-tmp.py:37:69: E226 missing whitespace around arithmetic operator
+df_crime_rate['z-log-crime-rate'] = (df_crime_rate['log-crime-rate']-df_crime_rate['log-crime-rate'].mean())/df_crime_rate['log-crime-rate'].std()
+                                                                    ^
+notebooks/Crime_Rate-tmp.py:37:109: E226 missing whitespace around arithmetic operator
+df_crime_rate['z-log-crime-rate'] = (df_crime_rate['log-crime-rate']-df_crime_rate['log-crime-rate'].mean())/df_crime_rate['log-crime-rate'].std()
+                                                                                                            ^
+notebooks/Crime_Rate-tmp.py:43:61: E251 unexpected spaces around keyword / parameter equals
+df_crime_rate.to_csv("../data/curated/Crime_Rate.csv", index = False)
+                                                            ^
+notebooks/Crime_Rate-tmp.py:43:63: E251 unexpected spaces around keyword / parameter equals
+df_crime_rate.to_csv("../data/curated/Crime_Rate.csv", index = False)
+                                                              ^
+notebooks/preprocessing-tmp.py:36:35: W291 trailing whitespace
+# process with regular expressions
+                                  ^
+notebooks/preprocessing-tmp.py:37:1: E302 expected 2 blank lines, found 1
+def fun(txt):
+^
+notebooks/preprocessing-tmp.py:38:22: E261 at least two spaces before inline comment
+    txt = txt.lower() #Change Uppercase to Lower case
+                     ^
+notebooks/preprocessing-tmp.py:38:23: E262 inline comment should start with '# '
+    txt = txt.lower() #Change Uppercase to Lower case
+                      ^
+notebooks/preprocessing-tmp.py:38:54: W291 trailing whitespace
+    txt = txt.lower() #Change Uppercase to Lower case
+                                                     ^
+notebooks/preprocessing-tmp.py:39:25: E231 missing whitespace after ','
+    txt = re.sub(' ', '',txt)  # remove spaces
+                        ^
+notebooks/preprocessing-tmp.py:39:47: W291 trailing whitespace
+    txt = re.sub(' ', '',txt)  # remove spaces
+                                              ^
+notebooks/preprocessing-tmp.py:40:25: E231 missing whitespace after ','
+    txt = re.sub(',', '',txt)  # remove comma ','，some numbers like 1,200, the comma needs to be removed for matching
+                        ^
+notebooks/preprocessing-tmp.py:41:19: W605 invalid escape sequence '\.'
+    txt = re.sub('\.(\d+)', '', txt)  # process price data, remove decimal places - 250.00-->250
+                  ^
+notebooks/preprocessing-tmp.py:41:22: W605 invalid escape sequence '\d'
+    txt = re.sub('\.(\d+)', '', txt)  # process price data, remove decimal places - 250.00-->250
+                     ^
+notebooks/preprocessing-tmp.py:42:19: W605 invalid escape sequence '\.'
+    txt = re.sub('\.', '', txt)  # remove'.'，p.w. also refers to perweek
+                  ^
+notebooks/preprocessing-tmp.py:44:1: W293 blank line contains whitespace
+
+^
+notebooks/preprocessing-tmp.py:46:22: W291 trailing whitespace
+    if len(res) == 0:
+                     ^
+notebooks/preprocessing-tmp.py:48:1: W293 blank line contains whitespace
+
+^
+notebooks/preprocessing-tmp.py:49:24: W605 invalid escape sequence '\$'
+    rent = re.findall('\$(\d+)', txt)  # Extract the rental amount, which may contain both weekly and monthly rents, and return a matching string
+                       ^
+notebooks/preprocessing-tmp.py:49:27: W605 invalid escape sequence '\d'
+    rent = re.findall('\$(\d+)', txt)  # Extract the rental amount, which may contain both weekly and monthly rents, and return a matching string
+                          ^
+notebooks/preprocessing-tmp.py:50:1: W293 blank line contains whitespace
+
+^
+notebooks/preprocessing-tmp.py:54:1: W293 blank line contains whitespace
+
+^
+notebooks/preprocessing-tmp.py:59:1: E305 expected 2 blank lines after class or function definition, found 1
+df['price'] = df['price'].apply(fun)
+^
+notebooks/preprocessing-tmp.py:65:31: E251 unexpected spaces around keyword / parameter equals
+plt.hist(df_new['price'], bins = 100)
+                              ^
+notebooks/preprocessing-tmp.py:65:33: E251 unexpected spaces around keyword / parameter equals
+plt.hist(df_new['price'], bins = 100)
+                                ^
+notebooks/preprocessing-tmp.py:79:62: W291 trailing whitespace
+sch_loc = df_school[['School_Name', 'School_Type', 'Y', 'X']]
+                                                             ^
+notebooks/preprocessing-tmp.py:90:1: E302 expected 2 blank lines, found 1
+def dist_fun(pos1, pos2):
+^
+notebooks/preprocessing-tmp.py:99:17: E226 missing whitespace around arithmetic operator
+    a = sin(dlat/2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+                ^
+notebooks/preprocessing-tmp.py:101:13: W291 trailing whitespace
+    r = 6371
+            ^
+notebooks/preprocessing-tmp.py:106:1: E305 expected 2 blank lines after class or function definition, found 1
+pri_dist = cdist(house_loc, pri_loc[['Y', 'X']], metric = dist_fun)
+^
+notebooks/preprocessing-tmp.py:106:56: E251 unexpected spaces around keyword / parameter equals
+pri_dist = cdist(house_loc, pri_loc[['Y', 'X']], metric = dist_fun)
+                                                       ^
+notebooks/preprocessing-tmp.py:106:58: E251 unexpected spaces around keyword / parameter equals
+pri_dist = cdist(house_loc, pri_loc[['Y', 'X']], metric = dist_fun)
+                                                         ^
+notebooks/preprocessing-tmp.py:107:33: E251 unexpected spaces around keyword / parameter equals
+pri_min_dist = pri_dist.min(axis = 1)
+                                ^
+notebooks/preprocessing-tmp.py:107:35: E251 unexpected spaces around keyword / parameter equals
+pri_min_dist = pri_dist.min(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:110:56: E251 unexpected spaces around keyword / parameter equals
+sec_dist = cdist(house_loc, sec_loc[['Y', 'X']], metric = dist_fun)
+                                                       ^
+notebooks/preprocessing-tmp.py:110:58: E251 unexpected spaces around keyword / parameter equals
+sec_dist = cdist(house_loc, sec_loc[['Y', 'X']], metric = dist_fun)
+                                                         ^
+notebooks/preprocessing-tmp.py:111:33: E251 unexpected spaces around keyword / parameter equals
+sec_min_dist = sec_dist.min(axis = 1)
+                                ^
+notebooks/preprocessing-tmp.py:111:35: E251 unexpected spaces around keyword / parameter equals
+sec_min_dist = sec_dist.min(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:114:60: E251 unexpected spaces around keyword / parameter equals
+other_dist = cdist(house_loc, other_loc[['Y', 'X']], metric = dist_fun)
+                                                           ^
+notebooks/preprocessing-tmp.py:114:62: E251 unexpected spaces around keyword / parameter equals
+other_dist = cdist(house_loc, other_loc[['Y', 'X']], metric = dist_fun)
+                                                             ^
+notebooks/preprocessing-tmp.py:115:37: E251 unexpected spaces around keyword / parameter equals
+other_min_dist = other_dist.min(axis = 1)
+                                    ^
+notebooks/preprocessing-tmp.py:115:39: E251 unexpected spaces around keyword / parameter equals
+other_min_dist = other_dist.min(axis = 1)
+                                      ^
+notebooks/preprocessing-tmp.py:124:33: E251 unexpected spaces around keyword / parameter equals
+pri_index = pri_dist.argmin(axis = 1)
+                                ^
+notebooks/preprocessing-tmp.py:124:35: E251 unexpected spaces around keyword / parameter equals
+pri_index = pri_dist.argmin(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:128:33: E251 unexpected spaces around keyword / parameter equals
+sec_index = sec_dist.argmin(axis = 1)
+                                ^
+notebooks/preprocessing-tmp.py:128:35: E251 unexpected spaces around keyword / parameter equals
+sec_index = sec_dist.argmin(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:142:1: E303 too many blank lines (3)
+df_new['min_pri_longitude'] = pri_school_info['X'].values
+^
+notebooks/preprocessing-tmp.py:153:1: E303 too many blank lines (3)
+import geopandas as gpd
+^
+notebooks/preprocessing-tmp.py:153:1: E402 module level import not at top of file
+import geopandas as gpd
+^
+notebooks/preprocessing-tmp.py:170:29: E231 missing whitespace after ','
+train_dist = cdist(house_loc,gpd_train[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                            ^
+notebooks/preprocessing-tmp.py:170:74: E251 unexpected spaces around keyword / parameter equals
+train_dist = cdist(house_loc,gpd_train[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                         ^
+notebooks/preprocessing-tmp.py:170:76: E251 unexpected spaces around keyword / parameter equals
+train_dist = cdist(house_loc,gpd_train[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                           ^
+notebooks/preprocessing-tmp.py:171:30: E251 unexpected spaces around keyword / parameter equals
+pd.Series(train_dist.min(axis = 1)).describe()
+                             ^
+notebooks/preprocessing-tmp.py:171:32: E251 unexpected spaces around keyword / parameter equals
+pd.Series(train_dist.min(axis = 1)).describe()
+                               ^
+notebooks/preprocessing-tmp.py:173:37: E251 unexpected spaces around keyword / parameter equals
+train_index = train_dist.argmin(axis = 1)
+                                    ^
+notebooks/preprocessing-tmp.py:173:39: E251 unexpected spaces around keyword / parameter equals
+train_index = train_dist.argmin(axis = 1)
+                                      ^
+notebooks/preprocessing-tmp.py:202:73: E251 unexpected spaces around keyword / parameter equals
+tram_dist = cdist(house_loc, gpd_tram[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                        ^
+notebooks/preprocessing-tmp.py:202:75: E251 unexpected spaces around keyword / parameter equals
+tram_dist = cdist(house_loc, gpd_tram[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                          ^
+notebooks/preprocessing-tmp.py:203:29: E251 unexpected spaces around keyword / parameter equals
+pd.Series(tram_dist.min(axis = 1)).describe()
+                            ^
+notebooks/preprocessing-tmp.py:203:31: E251 unexpected spaces around keyword / parameter equals
+pd.Series(tram_dist.min(axis = 1)).describe()
+                              ^
+notebooks/preprocessing-tmp.py:205:35: E251 unexpected spaces around keyword / parameter equals
+tram_index = tram_dist.argmin(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:205:37: E251 unexpected spaces around keyword / parameter equals
+tram_index = tram_dist.argmin(axis = 1)
+                                    ^
+notebooks/preprocessing-tmp.py:240:20: W291 trailing whitespace
+# if need to remove
+                   ^
+notebooks/preprocessing-tmp.py:245:71: E251 unexpected spaces around keyword / parameter equals
+bus_dist = cdist(house_loc, gpd_bus[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                      ^
+notebooks/preprocessing-tmp.py:245:73: E251 unexpected spaces around keyword / parameter equals
+bus_dist = cdist(house_loc, gpd_bus[['LATITUDE', 'LONGITUDE']], metric = dist_fun)
+                                                                        ^
+notebooks/preprocessing-tmp.py:246:28: E251 unexpected spaces around keyword / parameter equals
+pd.Series(bus_dist.min(axis = 1)).describe()
+                           ^
+notebooks/preprocessing-tmp.py:246:30: E251 unexpected spaces around keyword / parameter equals
+pd.Series(bus_dist.min(axis = 1)).describe()
+                             ^
+notebooks/preprocessing-tmp.py:248:33: E251 unexpected spaces around keyword / parameter equals
+bus_index = bus_dist.argmin(axis = 1)
+                                ^
+notebooks/preprocessing-tmp.py:248:35: E251 unexpected spaces around keyword / parameter equals
+bus_index = bus_dist.argmin(axis = 1)
+                                  ^
+notebooks/preprocessing-tmp.py:271:1: E303 too many blank lines (3)
+path_park = r'../data/raw/PARKRES.shp'
+^
+notebooks/preprocessing-tmp.py:283:1: E303 too many blank lines (3)
+# Using DataFrame.drop_duplicates() to keep first duplicate row based on specific column - PRIMS_ID
+^
+notebooks/preprocessing-tmp.py:284:43: E251 unexpected spaces around keyword / parameter equals
+gpd_park = gpd_park.drop_duplicates(subset = ['PRIMS_ID'], keep = 'first')
+                                          ^
+notebooks/preprocessing-tmp.py:284:45: E251 unexpected spaces around keyword / parameter equals
+gpd_park = gpd_park.drop_duplicates(subset = ['PRIMS_ID'], keep = 'first')
+                                            ^
+notebooks/preprocessing-tmp.py:284:64: E251 unexpected spaces around keyword / parameter equals
+gpd_park = gpd_park.drop_duplicates(subset = ['PRIMS_ID'], keep = 'first')
+                                                               ^
+notebooks/preprocessing-tmp.py:284:66: E251 unexpected spaces around keyword / parameter equals
+gpd_park = gpd_park.drop_duplicates(subset = ['PRIMS_ID'], keep = 'first')
+                                                                 ^
+notebooks/preprocessing-tmp.py:288:1: E402 module level import not at top of file
+from shapely.geometry import Polygon, LineString, Point
+^
+notebooks/preprocessing-tmp.py:302:73: E251 unexpected spaces around keyword / parameter equals
+park_dist = cdist(house_loc, gpd_park[['Latitude', 'Longitude']], metric = dist_fun)
+                                                                        ^
+notebooks/preprocessing-tmp.py:302:75: E251 unexpected spaces around keyword / parameter equals
+park_dist = cdist(house_loc, gpd_park[['Latitude', 'Longitude']], metric = dist_fun)
+                                                                          ^
+notebooks/preprocessing-tmp.py:303:29: E251 unexpected spaces around keyword / parameter equals
+pd.Series(park_dist.min(axis = 1)).describe()
+                            ^
+notebooks/preprocessing-tmp.py:303:31: E251 unexpected spaces around keyword / parameter equals
+pd.Series(park_dist.min(axis = 1)).describe()
+                              ^
+notebooks/preprocessing-tmp.py:328:1: E303 too many blank lines (3)
+df_new = df_new.drop(df_new[(df_new['suburb'] == 'Adelaide')].index)
+^
+notebooks/preprocessing-tmp.py:332:1: E303 too many blank lines (3)
+df_new
+^
+notebooks/preprocessing-tmp.py:334:52: E231 missing whitespace after ','
+df_new.to_csv('../data/curated/realestate_coor.csv',index = False)
+                                                   ^
+notebooks/preprocessing-tmp.py:334:58: E251 unexpected spaces around keyword / parameter equals
+df_new.to_csv('../data/curated/realestate_coor.csv',index = False)
+                                                         ^
+notebooks/preprocessing-tmp.py:334:60: E251 unexpected spaces around keyword / parameter equals
+df_new.to_csv('../data/curated/realestate_coor.csv',index = False)
+                                                           ^
+notebooks/preprocessing-tmp.py:336:1: W391 blank line at end of file
+
+^
+notebooks/adding_ICSEA-tmp.py:20:1: E302 expected 2 blank lines, found 1
+def get_school_info(school_location_csv_file, school_profile_excel_file, excel_file_sheet_name):
+^
+notebooks/adding_ICSEA-tmp.py:68:1: E303 too many blank lines (3)
+def update_csv_with_school_info(realestate_csv_file, school_loc_csv_file, school_profile_excel_file, excel_file_sheet_name,
+^
+notebooks/adding_ICSEA-tmp.py:138:69: E127 continuation line over-indented for visual indent
+                                                                    row_min_pri_longitude, df['min_pri_icsea'],
+                                                                    ^
+notebooks/adding_ICSEA-tmp.py:139:69: E127 continuation line over-indented for visual indent
+                                                                    row_min_sec_latitude, row_min_sec_longitude,
+                                                                    ^
+notebooks/adding_ICSEA-tmp.py:140:69: E127 continuation line over-indented for visual indent
+                                                                    df['min_sec_icsea'], school_name))
+                                                                    ^
+notebooks/adding_ICSEA-tmp.py:153:1: E305 expected 2 blank lines after class or function definition, found 1
+if __name__ == '__main__':
+^
+notebooks/adding_ICSEA-tmp.py:175:1: W391 blank line at end of file
+
+^
+notebooks/transformSA2toSub-tmp.py:23:27: E711 comparison to None should be 'if cond is not None:'
+SA2 = SA2[SA2['geometry'] != None]  # two instances are removed
+                          ^
+notebooks/transformSA2toSub-tmp.py:62:33: E226 missing whitespace around arithmetic operator
+    years = list(set(df.columns)-set(['SA2 code']))
+                                ^
+notebooks/pre_analysis-tmp.py:10:14: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+             ^
+notebooks/pre_analysis-tmp.py:10:29: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+                            ^
+notebooks/pre_analysis-tmp.py:10:41: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+                                        ^
+notebooks/pre_analysis-tmp.py:10:49: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+                                                ^
+notebooks/pre_analysis-tmp.py:10:60: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+                                                           ^
+notebooks/pre_analysis-tmp.py:10:72: E231 missing whitespace after ','
+df = df[['id','propertyType','furnished','price','bedrooms','bathrooms','parkingSpaces',
+                                                                       ^
+notebooks/pre_analysis-tmp.py:11:1: E128 continuation line under-indented for visual indent
+'studies','closest_primary_distance','closest_primary_duration','closest_secondary_distance',
+^
+notebooks/pre_analysis-tmp.py:11:10: E231 missing whitespace after ','
+'studies','closest_primary_distance','closest_primary_duration','closest_secondary_distance',
+         ^
+notebooks/pre_analysis-tmp.py:11:37: E231 missing whitespace after ','
+'studies','closest_primary_distance','closest_primary_duration','closest_secondary_distance',
+                                    ^
+notebooks/pre_analysis-tmp.py:11:64: E231 missing whitespace after ','
+'studies','closest_primary_distance','closest_primary_duration','closest_secondary_distance',
+                                                               ^
+notebooks/pre_analysis-tmp.py:12:1: E128 continuation line under-indented for visual indent
+'closest_secondary_duration','closest_train_distance','closest_train_duration','closest_tram_distance',
+^
+notebooks/pre_analysis-tmp.py:12:29: E231 missing whitespace after ','
+'closest_secondary_duration','closest_train_distance','closest_train_duration','closest_tram_distance',
+                            ^
+notebooks/pre_analysis-tmp.py:12:54: E231 missing whitespace after ','
+'closest_secondary_duration','closest_train_distance','closest_train_duration','closest_tram_distance',
+                                                     ^
+notebooks/pre_analysis-tmp.py:12:79: E231 missing whitespace after ','
+'closest_secondary_duration','closest_train_distance','closest_train_duration','closest_tram_distance',
+                                                                              ^
+notebooks/pre_analysis-tmp.py:13:1: E128 continuation line under-indented for visual indent
+'closest_tram_duration','closest_bus_distance','closest_bus_duration','closest_park_distance','closest_park_duration']]
+^
+notebooks/pre_analysis-tmp.py:13:24: E231 missing whitespace after ','
+'closest_tram_duration','closest_bus_distance','closest_bus_duration','closest_park_distance','closest_park_duration']]
+                       ^
+notebooks/pre_analysis-tmp.py:13:47: E231 missing whitespace after ','
+'closest_tram_duration','closest_bus_distance','closest_bus_duration','closest_park_distance','closest_park_duration']]
+                                              ^
+notebooks/pre_analysis-tmp.py:13:70: E231 missing whitespace after ','
+'closest_tram_duration','closest_bus_distance','closest_bus_duration','closest_park_distance','closest_park_duration']]
+                                                                     ^
+notebooks/pre_analysis-tmp.py:13:94: E231 missing whitespace after ','
+'closest_tram_duration','closest_bus_distance','closest_bus_duration','closest_park_distance','closest_park_duration']]
+                                                                                             ^
+notebooks/pre_analysis-tmp.py:25:54: W291 trailing whitespace
+unique_corr_pairs = upper_corr_mat.unstack().dropna()
+                                                     ^
+notebooks/historical_data-tmp.py:12:1: E302 expected 2 blank lines, found 1
+def get_year(s):
+^
+notebooks/historical_data-tmp.py:22:1: E302 expected 2 blank lines, found 1
+def get_month(s):
+^
+notebooks/historical_data-tmp.py:32:1: E305 expected 2 blank lines after class or function definition, found 1
+is_first = True
+^
+notebooks/historical_data-tmp.py:36:30: E251 unexpected spaces around keyword / parameter equals
+        df = df.fillna(method = "pad", axis = 1)  # Fill in the missing values with the previous column
+                             ^
+notebooks/historical_data-tmp.py:36:32: E251 unexpected spaces around keyword / parameter equals
+        df = df.fillna(method = "pad", axis = 1)  # Fill in the missing values with the previous column
+                               ^
+notebooks/historical_data-tmp.py:36:44: E251 unexpected spaces around keyword / parameter equals
+        df = df.fillna(method = "pad", axis = 1)  # Fill in the missing values with the previous column
+                                           ^
+notebooks/historical_data-tmp.py:36:46: E251 unexpected spaces around keyword / parameter equals
+        df = df.fillna(method = "pad", axis = 1)  # Fill in the missing values with the previous column
+                                             ^
+notebooks/historical_data-tmp.py:46:65: E227 missing whitespace around bitwise or shift operator
+df_T = df_T.loc[((df_T["year"] >= 2016) & (df_T["year"] <= 2021)&(df_T["month"] == "Jun")) | df_T["year"].isna()]  # Keep rows with year of 2016-2021 and null values
+                                                                ^
+scripts/OpenRouteService_cbd.py:8:21: E251 unexpected spaces around keyword / parameter equals
+def read_csv_file(p= '../data/curated/realestate_with_closest_distance_duration.csv'):
+                    ^
+scripts/OpenRouteService_cbd.py:64:48: E226 missing whitespace around arithmetic operator
+        loc = list(df.columns).index(position[i+1])
+                                               ^
+scripts/OpenRouteService_cbd.py:81:20: E714 test for object identity should be 'is not'
+                if not distance is None and not duration is None:
+                   ^
+scripts/OpenRouteService_cbd.py:82:39: E226 missing whitespace around arithmetic operator
+                    print("success", i//2, index, len(df.index))
+                                      ^
+scripts/OpenRouteService_cbd.py:87:44: E226 missing whitespace around arithmetic operator
+                    df.loc[index, columns[i+1]] = duration
+                                           ^
+scripts/OpenRouteService_cbd.py:89:37: E226 missing whitespace around arithmetic operator
+                    print('None ', i//2, index, len(df.index), "Try requesting again after a second")
+                                    ^
+scripts/OpenRouteService_cbd.py:100:1: E303 too many blank lines (3)
+if __name__ == "__main__":
+^
+scripts/OpenRouteService.py:74:48: E226 missing whitespace around arithmetic operator
+        loc = list(df.columns).index(position[i+1])
+                                               ^
+scripts/OpenRouteService.py:91:20: E714 test for object identity should be 'is not'
+                if not distance is None and not duration is None:
+                   ^
+scripts/OpenRouteService.py:92:39: E226 missing whitespace around arithmetic operator
+                    print("success", i//2, index, len(df.index))
+                                      ^
+scripts/OpenRouteService.py:97:44: E226 missing whitespace around arithmetic operator
+                    df.loc[index, columns[i+1]] = duration
+                                           ^
+scripts/OpenRouteService.py:99:37: E226 missing whitespace around arithmetic operator
+                    print('None ', i//2, index, len(df.index), "Try requesting again after a second")
+                                    ^
+scripts/OpenRouteService.py:110:1: E303 too many blank lines (3)
+if __name__ == "__main__":
+^
+scripts/DataScraping.py:80:21: W291 trailing whitespace
+    formats response
+                    ^
+reST docstrings PASSED✓ for notebooks/visualise-on-map.ipynb
+PEP8 guidelines PASSED✓ for notebooks/visualise-on-map.ipynb
+reST docstrings PASSED✓ for notebooks/question-three-modelling-analysis.ipynb
+PEP8 guidelines PASSED✓ for notebooks/question-three-modelling-analysis.ipynb
+reST docstrings PASSED✓ for notebooks/popu_incomepredict.ipynb
+PEP8 guidelines FAILED❌ for notebooks/popu_incomepredict.ipynb
+reST docstrings PASSED✓ for notebooks/Crime_Rate.ipynb
+PEP8 guidelines FAILED❌ for notebooks/Crime_Rate.ipynb
+reST docstrings PASSED✓ for notebooks/question2data.ipynb
+PEP8 guidelines PASSED✓ for notebooks/question2data.ipynb
+reST docstrings FAILED❌ for notebooks/preprocessing.ipynb
+functions missing reST docstrings:
+ - fun(txt)
+PEP8 guidelines FAILED❌ for notebooks/preprocessing.ipynb
+reST docstrings FAILED❌ for notebooks/adding_ICSEA.ipynb
+functions missing reST docstrings:
+ - get_school_info(school_location_csv_file, school_profile_excel_file, excel_file_sheet_name)
+PEP8 guidelines FAILED❌ for notebooks/adding_ICSEA.ipynb
+reST docstrings PASSED✓ for notebooks/transformSA2toSub.ipynb
+PEP8 guidelines FAILED❌ for notebooks/transformSA2toSub.ipynb
+reST docstrings PASSED✓ for notebooks/pre_analysis.ipynb
+PEP8 guidelines FAILED❌ for notebooks/pre_analysis.ipynb
+reST docstrings PASSED✓ for notebooks/question-one-modelling-analysis.ipynb
+PEP8 guidelines PASSED✓ for notebooks/question-one-modelling-analysis.ipynb
+reST docstrings FAILED❌ for notebooks/historical_data.ipynb
+functions missing reST docstrings:
+ - get_year(s)
+PEP8 guidelines FAILED❌ for notebooks/historical_data.ipynb
+reST docstrings FAILED❌ for scripts/OpenRouteService_cbd.py
+functions missing reST docstrings:
+ - read_csv_file(p= '../data/curated/realestate_with_closest_distance_duration.csv')
+ - post_get(start_longitude, start_latitude, end_longitude, end_latitude)
+PEP8 guidelines FAILED❌ for scripts/OpenRouteService_cbd.py
+reST docstrings FAILED❌ for scripts/OpenRouteService.py
+functions missing reST docstrings:
+ - read_csv_file(p='../data/curated/realestate_coor.csv')
+ - post_get(start_longitude, start_latitude, end_longitude, end_latitude)
+PEP8 guidelines FAILED❌ for scripts/OpenRouteService.py
+reST docstrings PASSED✓ for scripts/ipynb.py
+PEP8 guidelines PASSED✓ for scripts/ipynb.py
+reST docstrings PASSED✓ for scripts/__init__.py
+PEP8 guidelines PASSED✓ for scripts/__init__.py
+reST docstrings PASSED✓ for scripts/repo-linter.py
+PEP8 guidelines PASSED✓ for scripts/repo-linter.py
+reST docstrings PASSED✓ for scripts/engineer-metrics.py
+PEP8 guidelines PASSED✓ for scripts/engineer-metrics.py
+reST docstrings FAILED❌ for scripts/DataScraping.py
+functions missing reST docstrings:
+ - reptile(number, postcode)
+ - format_json(result)
+ - getLocation(id)
+ - getFurnished(id)
+PEP8 guidelines FAILED❌ for scripts/DataScraping.py

@@ -1,31 +1,9 @@
 #! /bin/python3
-import json
 import re
 import glob
 import os
 import pycodestyle
-
-
-def ipynb_to_py(file):
-    """
-    Convert an interactive python notebook to a python script
-
-    :param file: the location of an ipython notebook
-    :returns: python script as a string
-    """
-    ipynb = open(file)
-    data = json.load(ipynb)
-
-    pyscript = ''
-    for cell in data['cells']:
-        if cell['cell_type'] == 'code':
-            pyscript += ''.join(cell['source']) + '\n\n'
-    # ignore lines with #noqa
-    pyscript = '\n'.join([ln for ln in pyscript.split('\n')
-                         if '#noqa' not in ln])
-    # remove last new line
-    pyscript = pyscript[:-1]
-    return pyscript
+from ipynb import load_script
 
 
 def get_funcs_wout_reST_docstrings(python_script):
@@ -57,7 +35,7 @@ pys = glob.glob('**/*.py', recursive=True)
 
 for file in ipynbs + pys:
     if file in ipynbs:
-        pyscript = ipynb_to_py(file)
+        pyscript = load_script(file)
         tmp_file = ''.join(file.split('.')[:-1]) + '-tmp.py'
         if os.path.exists(tmp_file):
             os.remove(tmp_file)

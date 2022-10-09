@@ -3,7 +3,27 @@ import re
 import glob
 import os
 import pycodestyle
-from ipynb import load_script
+from json import load
+
+
+def load_script(file):
+    """
+    Convert an interactive python notebook to a python script
+
+    :param file: the location of an ipython notebook
+    :returns: python script as a string
+    """
+    ipynb = open(file)
+    data = load(ipynb)
+
+    pyscript = ''
+    for cell in data['cells']:
+        if cell['cell_type'] == 'code':
+            pyscript += ''.join(cell['source']) + '\n\n'
+
+    # remove last new line
+    pyscript = pyscript[:-1]
+    return pyscript
 
 
 def get_funcs_wout_reST_docstrings(python_script):

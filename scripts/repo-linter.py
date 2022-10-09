@@ -4,6 +4,7 @@ import glob
 import os
 import pycodestyle
 from json import load
+import sys
 
 
 def load_script(file):
@@ -50,8 +51,14 @@ def get_funcs_wout_reST_docstrings(python_script):
     return functions
 
 
+if len(sys.argv) == 2 and sys.argv[1] == '--quiet':
+    verbose_output = '-q --statistics'
+else:
+    verbose_output = '--show-source'
+
 ipynbs = glob.glob('**/*.ipynb', recursive=True)
 pys = glob.glob('**/*.py', recursive=True)
+exit_code = 0
 
 for file in ipynbs + pys:
     if file in ipynbs:
@@ -69,16 +76,21 @@ for file in ipynbs + pys:
     if len(funcs) == 0:
         print(f'reST docstrings PASSED\u2713 for {file}')
     else:
+        exit_code = 1
         print(f'reST docstrings FAILED\u274C for {file}')
         print(f'functions missing reST docstrings:')
         for f in funcs:
             print(f' - {f}')
 
     f = tmp_file if file in ipynbs else file
-    if os.system(f'pycodestyle {f} --ignore=E501 --show-source') != 0:
+
+    if os.system(f'pycodestyle {f} --ignore=E501 {verbose_output}') != 0:
+        exit_code = 1
         print(f'PEP8 guidelines FAILED\u274C for {file}')
     else:
         print(f'PEP8 guidelines PASSED\u2713 for {file}')
 
     if file in ipynbs:
         os.remove(tmp_file)
+
+sys.exit(exit_code)

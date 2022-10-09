@@ -29,4 +29,4 @@ jobs:
         pip install pycodestyle
     - name: Lint with repo-linter
       run: |
-        python3 ./scripts/repo-linter.py
+        python3 ./scripts/repo-linter.py --quiet

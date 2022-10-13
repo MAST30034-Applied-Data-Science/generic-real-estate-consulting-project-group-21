@@ -30,9 +30,9 @@ This is run as a Github Action and the output can be checked on Github by clicki
 `notebooks/summary_notebook.ipynb` - for an overview
 
 Notebooks for specific questions:
-`notebooks/question-*-analysis.ipynb` - requires `scripts/engineer-metrics.py`
-`notebooks/question-*-modelling.ipynb` - requires `scripts/engineer-metrics.py`
-`notebooks/Q3.ipynb` - requires `scripts/dataforQ3.py`
+* `notebooks/question-*-analysis.ipynb` - requires `scripts/engineer-metrics.py`
+* `notebooks/question-*-modelling.ipynb` - requires `scripts/engineer-metrics.py`
+* `notebooks/Q3.ipynb` - requires `scripts/dataforQ3.py`
 
 ## Notes on Running Code
 

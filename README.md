@@ -38,7 +38,7 @@ This is run as a Github Action and the output can be checked on Github by clicki
 
 Notebooks for specific questions:
 * `notebooks/question-*-analysis.ipynb` - requires `scripts/engineer-metrics.py`
-* `notebooks/question-*-modelling.ipynb` - requires `scripts/engineer-metrics.py`
+* `models/question-*-modelling.ipynb` - requires `scripts/engineer-metrics.py`
 * `notebooks/Q3.ipynb` - requires `scripts/dataforQ3.py`
 
 ## Notes on Running Code

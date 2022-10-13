@@ -1,5 +1,12 @@
 # Generic Real Estate Consulting Project
 
+## Dependencies
+
+Install Python dependencies with:
+
+```
+pip install -r requirements.txt
+```
 
 ## Style Requirements
 

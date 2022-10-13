@@ -36,11 +36,11 @@ Notebooks for specific questions:
 
 ## Notes on Running Code
 
-`scripts/DataScraping.py` will require API keys to run, they can be found from the developer options tab when searching [www.realestate.com.au]
+`scripts/DataScraping.py` will require API keys to run, they can be found from the developer options tab when searching www.realestate.com.au
 
 `scripts/OpenRouteService*.py` will require an Open Route Service server to run - ours has been shutdown as of 13/10/22
 
-The most easiest way to get an Open Route Service server would be to ask Lachlan.
+The easiest way to get an Open Route Service server would be to ask Lachlan.
 
 ## LaTeX Plots
 
@@ -52,6 +52,4 @@ text.usetex: True
 ```
 
 Note that these were not set within the repo as it requires a working latex installation - which most people don't have.
-
-See [matplotlib - Text rendering with LaTeX](https://matplotlib.org/stable/tutorials/text/usetex.html) for details.
 

@@ -8,7 +8,7 @@ Install Python dependencies with:
 pip install -r requirements.txt
 ```
 
-The notebooks and scripts have the following dependency relations
+The notebooks and scripts have the following dependency relations. Please run the code layer by layer.
 ![Dependency Graph](graph.svg)
 
 ## Style Requirements
@@ -25,7 +25,7 @@ This is run as a Github Action and the output can be checked on Github by clicki
 
 ### Data that can not be Downloaded in Python
 
-To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.gov.au/search?md=46bba391-0d67-5bd7-b0bb-bb37945c5c4a , then click 'Add to Order' and 'Proceed to Order Configuration'.  After entering order configuration, choose 'Geographicals for GDA 94' for Projection, 'ESRI Shapefile' for Format and select all area avaliable. Then click 'Proceed to my Cart' and 'Proceed to my Details'. Tick 'Continue as a guest' and enter your e-mail address. After Agreeing on the term of use, click 'Confirm'. Download the zip file from e-mail, open it and put folder ll_gda94 to data/raw
+To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.gov.au/search?md=46bba391-0d67-5bd7-b0bb-bb37945c5c4a , then click 'Add to Order' and 'Proceed to Order Configuration'.  After entering order configuration, choose 'Geographicals for GDA 94' for Projection, 'ESRI Shapefile' for Format and tick the box 'select all area avaliable'. Then click 'Proceed to my Cart' and 'Proceed to my Details'. Tick 'Continue as a guest' and enter your e-mail address. After Agreeing on the term of use, click 'Confirm'. Download the zip file from e-mail, open it and put folder ll_gda94 to data/raw
 
 
 ### Data Processing

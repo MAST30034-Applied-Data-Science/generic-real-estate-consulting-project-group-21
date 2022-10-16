@@ -11,7 +11,7 @@ pip install -r requirements.txt
 The notebooks and scripts have the following dependency relations. Please run the code layer by layer.
 ![Dependency Graph](dependency-graph.svg)
 
-Artifacts of the green files are not strictly required, see Notes on Running Code for details.
+Artifacts of the green files are already in the repo, and thus are not strictly required, see Notes on Running Code for details.
 
 ## Style Requirements
 

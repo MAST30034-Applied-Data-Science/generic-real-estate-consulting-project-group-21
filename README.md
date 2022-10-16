@@ -11,6 +11,8 @@ pip install -r requirements.txt
 The notebooks and scripts have the following dependency relations. Please run the code layer by layer.
 ![Dependency Graph](dependency-graph.svg)
 
+Artifacts of the green files are not strictly required, see Notes on Running Code for details.
+
 ## Style Requirements
 
 Confirm that all code contains docstrings and follows PEP8 guidlines by running
@@ -45,9 +47,9 @@ To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.g
 `notebooks/summary_notebook.ipynb` - for an overview
 
 Notebooks for specific questions:
-* `notebooks/question-*-analysis.ipynb` - requires `scripts/engineer-metrics.py`
-* `models/question-*-modelling.ipynb` - requires `scripts/engineer-metrics.py`
-* `notebooks/Q3.ipynb` - requires `scripts/dataforQ3.py`
+* `notebooks/question-*-analysis.ipynb`
+* `models/question-*-modelling.ipynb` 
+* `notebooks/Q3.ipynb` 
 
 ## Notes on Running Code
 

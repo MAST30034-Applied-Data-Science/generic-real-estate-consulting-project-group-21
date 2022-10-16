@@ -47,8 +47,8 @@ To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.g
 `notebooks/summary_notebook.ipynb` - for an overview
 
 Notebooks for specific questions:
-* `notebooks/question-*-analysis.ipynb`
-* `models/question-*-modelling.ipynb` 
+* `notebooks/Q*-analysis.ipynb`
+* `models/Q*-modelling.ipynb` 
 * `notebooks/Q3.ipynb` 
 
 ## Notes on Running Code

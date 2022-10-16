@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-Install Python dependencies with:
+Install Python dependencies with
 
 ```
 pip install -r requirements.txt
@@ -11,13 +11,15 @@ pip install -r requirements.txt
 The notebooks and scripts have the following dependency relations. Please run the code layer by layer.
 ![Dependency Graph](dependency-graph.svg)
 
-Artifacts of the green files are already in the repo, and thus are not strictly required, see Notes on Running Code for details.
+Artifacts of the green files are already in the repo, and thus are not strictly necessary to run, see Notes on Running Code for details.
 
 ## Style Requirements
 
 Confirm that all code contains docstrings and follows PEP8 guidlines by running
 
-`scripts/repo-linter.py` 
+```
+python3 scripts/repo-linter.py
+```
 
 This checks the jupyter notebooks too.
 

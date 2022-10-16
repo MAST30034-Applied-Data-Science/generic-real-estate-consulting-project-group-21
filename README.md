@@ -19,9 +19,11 @@ Confirm that all code contains docstrings and follows PEP8 guidlines by running
 
 `scripts/repo-linter.py` 
 
-This checks the jupyter notebooks too. 
+This checks the jupyter notebooks too.
 
 This is run as a Github Action and the output can be checked on Github by clicking the tick/cross left of the commit hash.
+
+Note, due to the presence of URLs we decided to relax the 79 character line length requirement (with `--ignore=E501`)
 
 ## Overview
 

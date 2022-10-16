@@ -3,30 +3,38 @@ digraph mygraph {
   node [fontname="Helvetica,Arial,sans-serif"]
   edge [fontname="Helvetica,Arial,sans-serif"]
   node [shape=box];
-  "popu_incomepredict.ipynb";
-  "popu_incomepredict.ipynb" -> "transformSA2toSub.ipynb";
-  "transformSA2toSub.ipynb";
-  "transformSA2toSub.ipynb" -> "joinpopu-income.ipynb";
-  "historical_data.ipynb";
-  "historical_data.ipynb" -> "joinpopu-income.ipynb";
-  "joinpopu-income.ipynb";
-  "joinpopu-income.ipynb" -> "dataforQ3.py";
-  "joinpopu-income.ipynb" -> "engineer-metrics.py";
+  "popu_incomepredict.ipynb"
+  "popu_incomepredict.ipynb" -> "transformSA2toSub.ipynb"
+  "transformSA2toSub.ipynb"
+  "transformSA2toSub.ipynb" -> "joinpopu-income.ipynb"
+  "historical_data.ipynb"
+  "historical_data.ipynb" -> "joinpopu-income.ipynb"
+  "joinpopu-income.ipynb"
+  "joinpopu-income.ipynb" -> "dataforQ3.py"
+  "joinpopu-income.ipynb" -> "engineer-metrics.py"
   "Crime_Rate.ipynb"
-  "Crime_Rate.ipynb" -> "dataforQ3.py";
-  "Crime_Rate.ipynb" -> "engineer-metrics.py";
+  "Crime_Rate.ipynb" -> "dataforQ3.py"
+  "Crime_Rate.ipynb" -> "engineer-metrics.py"
   "preprocessing.ipynb"
-  "preprocessing.ipynb" -> "dataforQ3.py";
-  "preprocessing.ipynb" -> "engineer-metrics.py";
-  "engineer-metrics.py";
-  "engineer-metrics.py" -> "question-one-modelling.ipynb";
-  "engineer-metrics.py" -> "question-one-analysis.ipynb";
-  "engineer-metrics.py" -> "question-two-modelling.ipynb";
-  "engineer-metrics.py" -> "question-two-analysis.ipynb";
-  "engineer-metrics.py" -> "visualise-on-map.ipynb";
-  "engineer-metrics.py" -> "summary_notebook.ipynb";
-  "dataforQ3.py";
-  "dataforQ3.py" -> "Q3.ipynb";
-  "dataforQ3.py" -> "summary_notebook.ipynb";
-  "repo-linter.py";
+  "preprocessing.ipynb" -> "dataforQ3.py"
+  "preprocessing.ipynb" -> "engineer-metrics.py"
+  "engineer-metrics.py"
+  "engineer-metrics.py" -> "question-one-modelling.ipynb"
+  "engineer-metrics.py" -> "question-one-analysis.ipynb"
+  "engineer-metrics.py" -> "question-two-modelling.ipynb"
+  "engineer-metrics.py" -> "question-two-analysis.ipynb"
+  "engineer-metrics.py" -> "visualise-on-map.ipynb"
+  "dataforQ3.py"
+  "dataforQ3.py" -> "Q3.ipynb"
+  "question-one-modelling.ipynb"
+  "question-one-modelling.ipynb" -> "summary_notebook.ipynb"
+  "question-one-analysis.ipynb"
+  "question-one-analysis.ipynb" -> "summary_notebook.ipynb"
+  "question-two-modelling.ipynb"
+  "question-two-modelling.ipynb" -> "summary_notebook.ipynb"
+  "question-two-analysis.ipynb"
+  "question-two-analysis.ipynb" -> "summary_notebook.ipynb"
+  "Q3.ipynb"
+  "Q3.ipynb" -> "summary_notebook.ipynb"
+  "repo-linter.py"
 }

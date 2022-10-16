@@ -9,7 +9,7 @@ pip install -r requirements.txt
 ```
 
 The notebooks and scripts have the following dependency relations. Please run the code layer by layer.
-![Dependency Graph](graph.svg)
+![Dependency Graph](dependency-graph.svg)
 
 ## Style Requirements
 

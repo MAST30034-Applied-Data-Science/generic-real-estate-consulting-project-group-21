@@ -1,8 +1,12 @@
-digraph mygraph {
+digraph G {
   fontname="Helvetica,Arial,sans-serif"
   node [fontname="Helvetica,Arial,sans-serif"]
   edge [fontname="Helvetica,Arial,sans-serif"]
   node [shape=box];
+  "DataScraping.py" [color="green"]
+  "OpenRouteService*.py" [color="green"]
+  "DataScraping.py" -> "OpenRouteService*.py" 
+  "OpenRouteService*.py" -> "preprocessing.ipynb"
   "popu_incomepredict.ipynb"
   "popu_incomepredict.ipynb" -> "transformSA2toSub.ipynb"
   "transformSA2toSub.ipynb"

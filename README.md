@@ -36,19 +36,19 @@ To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.g
 
 ### Data Processing
 
-`scripts/DataScraping.py` - used to scrape Realestate.com.au data into `data/raw/realestate.csv`
+`scripts/scrape-listings.py` - used to scrape Realestate.com.au data into `data/raw/realestate.csv`
 
-`notebooks/preprocessing.py` - reads scraped data and outputs saves preprocessed data into `data/curated/realestate_coor.csv`
+`notebooks/process-listings.py` - reads scraped data and outputs saves preprocessed data into `data/curated/realestate_coor.csv`
 
-`scripts/OpenRouteService.py` - reads`data/curated/realestate_coor.csv` and wrote `data/curated/realestate_with_closest_distance_duration`
+`scripts/open-route-service-client.py` - reads`data/curated/realestate_coor.csv` and wrote `data/curated/realestate_with_closest_distance_duration`
 
-`notebooks/popu_incomepredict.py` - downloads historical population/incomes and estimates future population/incomes
+`notebooks/predict-population-income.py` - downloads historical population/incomes and estimates future population/incomes
 
-`notebooks/historical_data.ipynb` - preprocesses historical rental prices by suburb
+`notebooks/process-historical-rents.ipynb` - preprocesses historical rental prices by suburb
 
 ### Modelling / Analysis
 
-`notebooks/summary_notebook.ipynb` - for an overview
+`notebooks/summary-notebook.ipynb` - for an overview
 
 Notebooks for specific questions:
 * `notebooks/Q*-analysis.ipynb`
@@ -57,9 +57,9 @@ Notebooks for specific questions:
 
 ## Notes on Running Code
 
-`scripts/DataScraping.py` will require API keys to run, they can be found from the developer options tab when searching www.realestate.com.au
+`scripts/scrape-listings.py` will require API keys to run, they can be found from the developer options tab when searching www.realestate.com.au
 
-`scripts/OpenRouteService*.py` will require an Open Route Service server to run - ours has been shutdown as of 13/10/22
+`scripts/open-route-service-client*.py` will require an Open Route Service server to run - ours has been shutdown as of 13/10/22
 
 The easiest way to get an Open Route Service server would be to ask Lachlan.
 

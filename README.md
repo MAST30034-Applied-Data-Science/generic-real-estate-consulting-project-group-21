@@ -29,11 +29,6 @@ Note, due to the presence of URLs we decided to relax the 79 character line leng
 
 ## Overview
 
-### Data that can not be Downloaded in Python
-
-To get the shapefile of postcode in Victoria, go to https://datashare.maps.vic.gov.au/search?md=46bba391-0d67-5bd7-b0bb-bb37945c5c4a , then click 'Add to Order' and 'Proceed to Order Configuration'.  After entering order configuration, choose 'Geographicals for GDA 94' for Projection, 'ESRI Shapefile' for Format and tick the box 'select all area avaliable'. Then click 'Proceed to my Cart' and 'Proceed to my Details'. Tick 'Continue as a guest' and enter your e-mail address. After Agreeing on the term of use, click 'Confirm'. Download the zip file from e-mail, open it and put folder ll_gda94 to data/raw
-
-
 ### Data Processing
 
 `scripts/scrape-listings.py` - used to scrape Realestate.com.au data into `data/raw/realestate.csv`

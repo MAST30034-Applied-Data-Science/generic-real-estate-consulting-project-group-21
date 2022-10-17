@@ -1,0 +1,22 @@
+﻿The column names in a Shape file are limited to 10 characters
+This lists the short column name and the original column name in the database table
+-----------------------------------------------------------------------------------------------------
+
+AREASQM = AREASQM
+AREA_TYPE = AREA_TYPE
+AREATYPEID = AREA_TYPE_ID
+AREA_SRC = AREA_SOURCE
+POLY_SRC = POLY_SOURCE
+PRIMS_ID = PRIMS_ID
+HECTARES = HECTARES
+VEAC_STUDY = VEAC_STUDY
+ESTAB_DATE = ESTAB_DATE
+IUCN = IUCN
+SRCHNAME = SEARCH_NAME
+VEAC_REC = VEAC_REC
+TOTAL_AREA = TOTAL_AREA
+NAME = NAME
+VERS_DATE = VERS_DATE
+LAST_MOD = LAST_MOD
+MANAGER = MANAGER
+NAME_SHORT = NAME_SHORT
